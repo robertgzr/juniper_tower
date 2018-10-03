@@ -1,0 +1,22 @@
+[package]
+authors = ["Robert Günzler <r@gnzler.io>"]
+description = "Juniper GraphQL integration with tower_web"
+documentation = "https://docs.rs/juniper_tower"
+license = "MIT"
+name = "juniper_tower"
+repository = "https://github.com/robertgzr/juniper_tower"
+version = "0.1.0"
+
+[dependencies]
+http = "0.1.13"
+serde = "1.0.79"
+serde_json = "1.0.31"
+tokio = "0.1.11"
+tower-web = "0.2.2"
+
+[dependencies.juniper]
+features = ["serde_json"]
+version = "0.10.0"
+[dev-dependencies.juniper]
+features = ["expose-test-schema"]
+version = "0.10.0"
