@@ -1,7 +1,3 @@
-extern crate juniper;
-extern crate http;
-extern crate serde_json;
-extern crate tokio;
 #[macro_use]
 extern crate tower_web;
 
