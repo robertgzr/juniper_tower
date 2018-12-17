@@ -15,7 +15,7 @@ type Schema = RootNode<'static, Database, EmptyMutation<Database>>;
 
 struct Juniper {
     schema: Schema,
-    context: Database, 
+    context: Database,
 }
 
 impl_web! {
@@ -45,9 +45,7 @@ fn main() {
     println!("running: {}", addr);
     ServiceBuilder::new()
         .resource(Juniper {
-            schema: Schema::new(
-                      Database::new(),
-                      EmptyMutation::<Database>::new()),
+            schema: Schema::new(Database::new(), EmptyMutation::<Database>::new()),
             context: Database::new(),
         })
         .run(&addr)

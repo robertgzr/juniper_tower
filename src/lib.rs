@@ -10,7 +10,7 @@ use juniper::RootNode;
 #[derive(Debug, Extract, Deserialize)]
 pub struct GraphQLRequest {
     #[serde(flatten)]
-    gq: juniper::http::GraphQLRequest
+    gq: juniper::http::GraphQLRequest,
 }
 
 #[derive(Debug, Response, Serialize)]
@@ -22,16 +22,18 @@ pub struct GraphQLResponse {
     status: u16,
 }
 
-pub fn graphiql_source(graphql_endpoint_url: &str) -> impl Future<Item = String, Error = ()> + Send {
+pub fn graphiql_source(
+    graphql_endpoint_url: &str,
+) -> impl Future<Item = String, Error = ()> + Send {
     future::ok(juniper::graphiql::graphiql_source(graphql_endpoint_url))
 }
 
 impl GraphQLRequest {
     pub fn execute<CtxT, QueryT, MutationT>(
-        &self, 
+        &self,
         root_node: &RootNode<QueryT, MutationT>,
         context: &CtxT,
-    ) -> impl Future<Item=GraphQLResponse, Error=()>
+    ) -> impl Future<Item = GraphQLResponse, Error = ()>
     where
         QueryT: GraphQLType<Context = CtxT>,
         MutationT: GraphQLType<Context = CtxT>,
